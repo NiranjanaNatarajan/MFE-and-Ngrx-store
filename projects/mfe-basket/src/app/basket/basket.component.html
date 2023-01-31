@@ -1,0 +1,58 @@
+<!-- <h3 class="text-xl mb-6">Your Employee Details</h3>
+
+<p *ngIf="totalItems === 0">
+    Oh no! Your cupcake basket is empty. 😢 &nbsp; Treat yourself to a cupcake!
+</p>
+
+<div>
+    <table class="table-auto">
+        <thead class="border border-y-sky-500 border-x-0 h-8">
+        <th class="text-left px-3">Emp Id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        <th class="text-left px-3">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        <th class="text-center pr-3">Designation</th>
+        </thead>
+        <tr class="h-12">
+            <td>Ace10808</td>
+            <td><a routerLink="">Seetha</a></td>
+            <td>Associate Delievery Manager</td>
+        </tr>
+        <tr class="h-12">
+            <td>Ace10808</td>
+            <td><a routerLink="">Chandra</a></td>
+            <td>Associate Delievery Manager</td>
+        </tr>
+        <tr class="h-12">
+            <td>Ace10808</td>
+            <td><a routerLink="">Dhiya</a></td>
+            <td>Associate Delievery Manager</td>
+        </tr>
+    </table>
+    <p class="mt-6">
+        Total number of items: {{totalItems}}
+    </p>
+</div> -->
+
+
+
+<div class="flex h-56">
+    <div class="flex-none w-48 relative">
+        <img src="assets/avatar.png" alt="{{this.items?.name}}"
+            class="absolute inset-0 w-full h-full object-cover rounded-l-lg" />
+    </div>
+    <div class="p-6 border-y border-r border-sky-300 rounded-r-lg w-96 flex flex-col">
+        <h2 class="text-3xl text-violet-600">
+            {{this.items?.name}}
+        </h2>
+        <p class="text-sm text-slate-600 flex-grow">
+            {{this.items?.empId}}
+        </p>
+        <p class="my-2 text-sm text-slate-600 flex-grow">
+            Designation: {{this.items?.designation}}<br/>
+            {{this.items?.description}}
+        </p>
+        <p class="my-2 text-sm text-slate-600 flex-grow">
+            Project: {{this.items?.project}}<br/>
+            Manager: {{this.items?.manager}}
+        </p>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="flex h-36">
+    <div class="flex-none w-48 relative">
+        <img src="assets/avatar.png" alt="{{product.name}}" class="absolute inset-0 w-full h-full object-cover rounded-l-lg" />
+    </div>
+    <div class="p-6 border-y border-r border-sky-300 rounded-r-lg w-96 flex flex-col">
+        <h2 class="text-3xl text-violet-600">
+           <a routerLink="/basket" (click)="purchaseProduct()"> {{product.name}}</a>
+        </h2>
+    </div>
+
+    <!-- <div class="card">
+        <h5>Single</h5>
+        <p>In single mode, a row is selected on click event of a row. If the row is already selected then the row gets unselected.</p>
+        <p-table [value]="products" selectionMode="single" [(selection)]="selectedProduct1" dataKey="code">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr [pSelectableRow]="product">
+                    <td>{{product.code}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.quantity}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div> -->
+    
+</div>

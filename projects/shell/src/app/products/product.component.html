@@ -6,6 +6,15 @@
         <h2 class="text-3xl text-violet-600">
            <a routerLink="/basket" (click)="purchaseProduct()"> {{product.name}}</a>
         </h2>
+        <div>
+            {{product.designation}} - {{product.empId}}
+        </div>
+        <div>
+            {{product.description}}
+        </div>
+        <div>
+            {{product.project}} - {{product.manager}}
+        </div>
     </div>
 
     <!-- <div class="card">

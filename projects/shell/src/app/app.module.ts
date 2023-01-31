@@ -42,7 +42,7 @@ const oktaAuth = new OktaAuth({
     HttpClientModule,
     CommonModule,
     OktaAuthModule,
-    StoreModule.forRoot(counterReducer),
+    StoreModule.forRoot({counter: counterReducer}),
   ],
   providers: [
     { provide: OKTA_CONFIG, useValue: { oktaAuth } }

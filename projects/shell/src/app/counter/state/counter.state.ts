@@ -1,5 +1,3 @@
-
-
 export const initialState = {
-  counter: 4,
+  counter: 0,
 };

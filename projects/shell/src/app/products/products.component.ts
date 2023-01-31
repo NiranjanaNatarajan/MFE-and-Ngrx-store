@@ -9,18 +9,18 @@ import { BasketService, Product } from '@shared';
   ]
 })
 export class ProductsComponent implements OnInit {
-  public products: any;
+  // public products: any;
 
-  constructor(private http: HttpClient, private basketService: BasketService) { }
+  constructor(private http: HttpClient, public basketService: BasketService) { }
 
   public ngOnInit() {
-    this.http.get('/assets/data.json').subscribe((res) => {
-      this.products = res;
-      console.log(this.products, 'oninit');
-    });
+    // this.http.get('/assets/data.json').subscribe((res) => {
+    //   this.basketService.products = res;
+    //   // this.products = res;
+    //   console.log(this.basketService.products, 'oninit');
+    // });
   }
   openEmployee(productId: any) {
-    const product = this.products.find((p: any) => p.id === productId) as Product;
-    this.basketService.addToBasket(product);
+    this.basketService.getEmployeeByID(productId);
   }
 }

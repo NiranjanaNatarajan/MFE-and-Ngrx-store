@@ -1,7 +1,71 @@
-<h3 class="text-xl mb-6">Your Profile</h3>
+<!-- <button (click)="loginSubmit()">login angular</button> -->
+<!-- <app-demo></app-demo> -->
 
-<div *ngIf="profile$ | async as profile">
-    <p>Name: <span class="font-semibold">{{profile.name}}</span></p>
-    <p class="my-3">Email: <span class="font-semibold">{{profile.email}}</span></p>
-    <p>Last signed in at <span class="font-semibold">{{date$ | async | date:'full'}}</span></p>
+<!-- <div>
+    <form [formGroup]="loginForm" (ngSubmit)="loginSubmit($event)" novalidate>
+        <div>
+            <h2>{{headerName}}</h2>
+        </div>
+        <div >
+            <label><b>Username</b></label>
+            <input type="email" placeholder="Enter Username" minLength="1" formControlName="email" required />
+            <small style="color: red;"
+                *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.required">
+                Please enter email address.!
+            </small>
+            <small style="color: red;"
+                *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.email">
+                Email address is not valid.!
+            </small><br />
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" minLength="8"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[A-Z]).{8,}" formControlName="password" required />
+            <small style="color: red;"
+                *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.required">
+                Please enter password.!
+            </small>
+            <small style="color: red;"
+            *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid && !loginForm.controls.password.errors?.required">The password must contain at least 1 number, special character and 1 uppercase and lowercase letter,
+                 and at least 8 or more characters</small>
+            <button type="submit" [disabled]="!loginForm.valid">Login</button>
+        </div>
+    </form>
+</div> -->
+
+
+<div class="container">
+    <div class="col-md-12 m-auto">
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit($event)" novalidate>
+            <div class="form-group">
+                <label for="email">User Name :</label>
+                <input type="text" id="email" class="form-control" formControlName="email" name="email"
+                    placeholder="User Name">
+                <small style="color: red;"
+                    *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.required">
+                    Please enter email address
+                </small>
+                <small style="color: red;"
+                    *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.email">
+                    Email address is not valid
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password :</label>
+                <input type="text" id="password" class="form-control" formControlName="password" name="password"
+                    placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[A-Z]).{8,}">
+                <small style="color: red;"
+                    *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.required">
+                    Please enter password
+                </small>
+                <small style="color: rgb(252, 98, 98);"
+                    *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid && !loginForm.controls.password.errors?.required">Note: The
+                    password must contain at least 1 number, special character and 1 uppercase and lowercase letter,
+                    and at least 8 or more characters</small>
+            </div>
+            <button [disabled]="!loginForm.valid" class="btn btn-success">Login</button>
+        </form>
+    </div>
 </div>
+<!-- for stencil start -->
+<!-- <my-component (submitLogin)="loginSubmit($event)"></my-component> -->
+<!-- for stencil end -->

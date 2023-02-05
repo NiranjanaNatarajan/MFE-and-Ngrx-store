@@ -3,7 +3,7 @@ export interface Product {
     name: string;
     description: string;
     designation: string;
-    empId: number,
+    empId: any,
     // link: string,
     manager: string,
     project: string

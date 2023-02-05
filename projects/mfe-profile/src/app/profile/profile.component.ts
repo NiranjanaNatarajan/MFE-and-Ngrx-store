@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { OktaAuthStateService } from '@okta/okta-angular';
 import { AuthenticationService } from 'projects/shared/src/lib/authentication.service';
-import { filter, map } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 
@@ -38,7 +36,7 @@ export class ProfileComponent {
     this.submitted = true;
     this.loading = true;
     this.authenticationService.login(this.loginForm.getRawValue().email, this.loginForm.getRawValue().password)
-      // .pipe(first())
+      .pipe(first())
       .subscribe(
         (data: any) => {
           alert('Logged In Successfully');

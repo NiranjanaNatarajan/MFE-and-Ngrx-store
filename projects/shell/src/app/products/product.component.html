@@ -4,7 +4,7 @@
     </div>
     <div class="p-6 border-y border-r border-sky-300 rounded-r-lg w-96 flex flex-col">
         <h2 class="text-3xl text-violet-600">
-           <a routerLink="/basket" (click)="purchaseProduct()"> {{product.name}}</a>
+           <a (click)="purchaseProduct()"> {{product.name}}</a>
         </h2>
         <div>
             {{product.designation}} - {{product.empId}}

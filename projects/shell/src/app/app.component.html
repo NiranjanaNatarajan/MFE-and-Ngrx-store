@@ -1,4 +1,3 @@
-
 <header class="p-4 mx-4 flex flex-row justify-between items-center">
   <div class="flex flex-row items-center">
     <img class="w-14">
@@ -8,8 +7,9 @@
     <nav>
       <ul class="inline-flex gap-3 items-center">
         <li>
-          <a routerLink="/counter">
-            <button
+          <!-- routerLink="/counter" -->
+          <a>
+            <button (click)="getCounter()"
               class="flex items-center transition ease-in delay-150 duration-300 h-10 px-4 rounded-lg hover:border hover:border-sky-400"
               routerLinkActive="text-cyan-500 font-semibold" [routerLinkActiveOptions]="{exact: true}">
               <!-- <span class="material-icons-outlined text-gray-500">storefront</span> -->
@@ -37,14 +37,25 @@
             </button>
           </a>
         </li>
-        <li>
+        <li *ngIf="!getFlag()">
           <a routerLink="/profile">
             <button
               class="flex items-center transition ease-in delay-150 duration-300 h-10 px-4 rounded-lg hover:border hover:border-sky-400"
               routerLinkActive="text-cyan-500 font-semibold">
-              <span class="material-icons-outlined text-gray-500">account_circle</span>
-              <span>&nbsp;Profile</span>
+            <sub> <span class="material-icons-outlined text-gray-500">account_circle</span></sub>
+              <span>&nbsp;Login</span>
             </button>
+          </a>
+        </li>
+        <!-- {{getFlag()}} -->
+        <li *ngIf="getFlag()">
+          <a>
+            <button (click)="auth?.logout()"
+              class="flex items-center transition ease-in delay-150 duration-300 h-10 px-4 rounded-lg hover:border hover:border-sky-400"
+              routerLinkActive="text-cyan-500 font-semibold">
+              <sub><span class="material-icons-outlined text-gray-500 width-10%">power_settings_new</span></sub>
+              <span>&nbsp;LogOut</span>
+            </button> 
           </a>
         </li>
         <li>

@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './products/product.component';
-import { OKTA_CONFIG, OktaAuthModule } from '@okta/okta-angular';
-import { OktaAuth } from '@okta/okta-auth-js';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
@@ -17,13 +15,10 @@ import { CounterComponent } from './counter/counter/counter.component';
 import { CounterButtonsComponent } from './counter/counter-buttons/counter-buttons.component';
 import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
 import { counterReducer } from './counter/state/counter.reducer';
+import { UserData } from 'projects/shared/src/lib/user-data.service';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { CounterCanActivate } from './guard';
 
-const oktaAuth = new OktaAuth({
-  issuer: 'https://{yourOktaDomain}/oauth2/default',
-  clientId: '{yourClientID}',
-  redirectUri: window.location.origin + '/login/callback',
-  scopes: ['openid', 'profile', 'email']
-});
 
 @NgModule({
   declarations: [
@@ -41,11 +36,10 @@ const oktaAuth = new OktaAuth({
     HttpModule,
     HttpClientModule,
     CommonModule,
-    OktaAuthModule,
+    InMemoryWebApiModule.forRoot(UserData),
     StoreModule.forRoot({counter: counterReducer}),
   ],
-  providers: [
-    { provide: OKTA_CONFIG, useValue: { oktaAuth } }
+  providers: [ CounterCanActivate
   ],
   bootstrap: [AppComponent]
 })

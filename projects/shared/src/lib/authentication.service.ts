@@ -6,27 +6,29 @@ import { map } from 'rxjs/operators';
 // import { environment } from 'src/environments/environment';
 import { User } from './user';
 import { environment } from 'projects/mfe-profile/src/environments/environment';
+import { LoginData } from './logi-data';
+import { Router } from '@angular/router';
 // import { Observable } from 'rxjs/dist/types/internal/Observable';
 // import { BehaviorSubject } from 'rxjs/dist/types/internal/BehaviorSubject';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    private currentUserSubject: BehaviorSubject<User>;
-    public currentUser: Observable<User>;
+    public currentUserSubject: BehaviorSubject<LoginData>;
+    public currentUser: Observable<LoginData>;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
         let val: any = localStorage.getItem('currentUser');
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(val));
+        this.currentUserSubject = new BehaviorSubject<LoginData>(JSON.parse(val));
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
-    public get currentUserValue(): User {
+    public get currentUserValue(): LoginData {
         return this.currentUserSubject.value;
     }
 
     login(username: string, password: string) {
-        return this.http.post<any>(`${environment.apiUrl}`, { username, password })
+        return this.http.post<LoginData>(`${'api/users'}`, { username, password })
             .pipe(map(user => {
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
@@ -34,8 +36,10 @@ export class AuthenticationService {
             }));
     }
 
-    // logout() {
-    //     localStorage.removeItem('currentUser');
-    //     this.currentUserSubject.next(new User());
-    // }
+    logout() {
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(new LoginData());
+        alert('Logged Out Successfully');
+        this.router.navigateByUrl('/');
+    }
 }

@@ -11,15 +11,13 @@ import { BasketService } from '@shared';
 export class BasketComponent implements OnInit {
 
   @Output() emitData = new EventEmitter();
-  maxDate = new Date().toJSON().split('T')[0];
-  minDate = new Date('2000-12-30').toJSON().split('T')[0];
   data = {};
   submitted = false;
   addForm: FormGroup;
 
   constructor(public basketService: BasketService, private fb: FormBuilder, private router: Router) {
     this.addForm = this.fb.group({
-      id: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(2)]],
+      id: [null, [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(2)]],
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4)]],
       description: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4)]],
       designation: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4)]],
@@ -36,11 +34,13 @@ export class BasketComponent implements OnInit {
       return;
     }
     if (this.basketService.selectedData) {
-      this.basketService.updateEmployee(this.addForm.getRawValue());
+      this.basketService.updateUser(this.addForm.getRawValue()).subscribe(data1 => {
+      });
     } else {
-      this.basketService.createEmployee(this.addForm.getRawValue());
+      this.basketService.addUser(this.addForm.getRawValue()).subscribe(data1 => {
+      });
+      ;
     }
-    // this.emitData.emit(this.submitted);
     alert((this.basketService.selectedData ? 'Updated ' : 'Added ') + 'Successfully');
     this.router.navigateByUrl('/');
   }

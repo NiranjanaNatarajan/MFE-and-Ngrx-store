@@ -1,8 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { filter, map, Observable, shareReplay } from 'rxjs';
-import { OKTA_AUTH, OktaAuthStateService } from '@okta/okta-angular';
-import { OktaAuth } from '@okta/okta-auth-js';
-// import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'projects/shared/src/lib/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -10,26 +8,16 @@ import { OktaAuth } from '@okta/okta-auth-js';
   styles: []
 })
 export class AppComponent {
-  public isAuthenticated$: Observable<boolean> = this.oktaStateService.authState$
-      .pipe(
-          filter((authState: any) => !!authState),
-          map((authState: { isAuthenticated: any; }) => authState.isAuthenticated ?? false),
-          shareReplay()
-      );
-
-  public name$: Observable<string> = this.oktaStateService.authState$
-      .pipe(
-          filter((authState: any)=> !!authState && !!authState.isAuthenticated),
-          map((authState: any) => authState.idToken?.claims.name ?? '')
-      );
-
-  constructor(private oktaStateService: OktaAuthStateService, @Inject(OKTA_AUTH) private oktaAuth: OktaAuth) { }
-
-  public async signIn(): Promise<void> {
-    await this.oktaAuth.signInWithRedirect();
+  constructor(public auth: AuthenticationService, private router: Router) { }
+  getFlag() {
+    // console.log(localStorage.getItem('currentUser'), 'kkkk');
+    return localStorage.getItem('currentUser');
   }
-
-  public async signOut(): Promise<void> {
-    await this.oktaAuth.signOut();
+  getCounter() {
+    // if (!localStorage.getItem('currentUser')) {
+    //   alert('Kindly Login to see counter functions');
+    // } else {
+      this.router.navigateByUrl('/counter');
+    // }
   }
 }
